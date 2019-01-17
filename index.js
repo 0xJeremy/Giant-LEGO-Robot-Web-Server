@@ -3,6 +3,7 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const express = require('express')
 const path = require('path')
 var app = express();
+var bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000
 
 app.use(function (req, res, next) {
@@ -13,10 +14,13 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use(bodyParser.json());
+
 app.set('views', __dirname + '/public');
 app.engine('html', require('ejs').renderFile);
 app.use('/', express.static(__dirname + '/public'));
 
+var action = ""
 
 app.get('/', function(req, res) {
 	res.render('index.html');
@@ -25,12 +29,13 @@ app.get('/', function(req, res) {
 app.post('/perform_action', function(req, res){
     console.log('POST /');
     console.dir(req.body);
+    action = req.body.value;
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end('thanks');
 });
 
-// app.get('/perform_action', function(req, res) {
-// 	res.render('index.html');
-// });
+app.get('/get_action', function(req, res) {
+	res.send(action)
+});
 
 app.listen(PORT, function() { console.log("Listening on port " + PORT)});
