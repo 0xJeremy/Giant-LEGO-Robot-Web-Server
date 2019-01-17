@@ -18,8 +18,8 @@
 	background: #ecf0f1;
 	padding-left: 5em;
 	padding-right: 5em;
-	padding-top: 5em;
-	padding-bottom: 5em;
+	padding-top: 1em;
+	padding-bottom: 1em;
 }
 
 .center-vertical {
@@ -34,11 +34,13 @@
 }
 
 .button-divider {
-	padding-left: 1em;
-	padding-right: 1em;
+	padding-left: 3em;
+	padding-right: 3em;
 	margin-left: 2em;
 	margin-right: 2em;
-	margin-top: 2em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	font-size: 25px;
 }
 
 .btn-calculate {
@@ -53,4 +55,8 @@
 }
 .btn-calculate:focus, .btn-calculate.focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 88, 77, 0.50);
+}
+
+button {
+
 }

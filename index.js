@@ -28,3 +28,5 @@ app.post('/', function(req, res){
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end('thanks');
 });
+
+app.listen(PORT, function() { console.log("Listening on port " + PORT)});
