@@ -22,11 +22,15 @@ app.get('/', function(req, res) {
 	res.render('index.html');
 });
 
-app.post('/', function(req, res){
+app.post('/perform_action', function(req, res){
     console.log('POST /');
     console.dir(req.body);
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end('thanks');
 });
+
+// app.get('/perform_action', function(req, res) {
+// 	res.render('index.html');
+// });
 
 app.listen(PORT, function() { console.log("Listening on port " + PORT)});
