@@ -4,7 +4,7 @@ var scare = document.getElementById("scare");
 
 var xhr = new XMLHttpRequest();
 
-var endpoint = ""
+var endpoint = "https://radiant-taiga-82724.herokuapp.com/perform_action"
 
 function send_post(action) {
 	xhr.open("POST", endpoint, true);
