@@ -1,10 +1,30 @@
+const http = require('http');
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const express = require('express')
 const path = require('path')
+var app = express();
 const PORT = process.env.PORT || 5000
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
+
+app.set('views', __dirname + '/public');
+app.engine('html', require('ejs').renderFile);
+app.use('/', express.static(__dirname + '/public'));
+
+
+app.get('/', function(req, res) {
+	res.render('index.html');
+});
+
+app.post('/', function(req, res){
+    console.log('POST /');
+    console.dir(req.body);
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end('thanks');
+});
